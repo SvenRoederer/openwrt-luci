@@ -374,19 +374,14 @@ function fetch_jsoninfo(otable)
 	local v4_port = uci:get("olsrd", "olsrd_jsoninfo", "port") or 9090
 	local v6_port = uci:get("olsrd6", "olsrd_jsoninfo", "port") or 9090
 
-	jsonreq4 = request_socket("127.0.0.1", v4_port, otable)
-	jsonreq6 = request_socket("::1", v6_port, otable)
+	jsonreq4 = request_socket("127.0.0.1", v4_port, otable) or ''
+	jsonreq6 = request_socket("::1", v6_port, otable) or ''
 	local jsondata4 = {}
 	local jsondata6 = {}
 	local data4 = {}
 	local data6 = {}
 	local has_v4 = False
 	local has_v6 = False
-
-	if not jsonreq4 and not jsonreq6 then
-                luci.template.render("status-olsr/error_olsr")
-                return nil, 0, 0, true                                                            
-        end                                   
 
 	if jsonreq4 == '' and jsonreq6 == '' then
 		luci.template.render("status-olsr/error_olsr")
