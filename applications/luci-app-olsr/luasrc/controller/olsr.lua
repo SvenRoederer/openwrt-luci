@@ -87,15 +87,18 @@ function action_json()
 	local v4_port = uci:get("olsrd", "olsrd_jsoninfo", "port") or 9090
 	local v6_port = uci:get("olsrd6", "olsrd_jsoninfo", "port") or 9090
 
-	jsonreq4 = utl.exec("(echo /status | nc 127.0.0.1 " .. v4_port .. ") 2>/dev/null" )
-	jsonreq6 = utl.exec("(echo /status | nc ::1 " .. v6_port .. ") 2>/dev/null")
+	jsonreq4 = request_socket("127.0.0.1", v4_port, "status")
+	jsonreq6 = request_socket("::1", v6_port, "status")
 	http.prepare_content("application/json")
 	if not jsonreq4 or jsonreq4 == "" then
 		jsonreq4 = "{}"
+		nixio.syslog("debug", "json4:fail")
 	end
 	if not jsonreq6 or jsonreq6 == "" then
 		jsonreq6 = "{}"
+		nixio.syslog("debug", "json6:fail")
 	end
+	nixio.syslog("debug", jsonreq6)
 	http.write('{"v4":' .. jsonreq4 .. ', "v6":' .. jsonreq6 .. '}')
 end
 
@@ -369,13 +372,15 @@ function fetch_jsoninfo(otable)
 	local utl = require "luci.util"
 	local json = require "luci.json"
 	local IpVersion = uci:get_first("olsrd", "olsrd","IpVersion")
-	local jsonreq4 = ""
-	local jsonreq6 = ""
+	local jsonreq4
+	local jsonreq6
 	local v4_port = uci:get("olsrd", "olsrd_jsoninfo", "port") or 9090
 	local v6_port = uci:get("olsrd6", "olsrd_jsoninfo", "port") or 9090
 
-	jsonreq4 = utl.exec("(echo /" .. otable .. " | nc 127.0.0.1 " .. v4_port .. ") 2>/dev/null")
-	jsonreq6 = utl.exec("(echo /" .. otable .. " | nc ::1 " .. v6_port .. ") 2>/dev/null")
+--	jsonreq4 = utl.exec("(echo /" .. otable .. " | nc 127.0.0.1 " .. v4_port .. ") 2>/dev/null")
+--	jsonreq6 = utl.exec("(echo /" .. otable .. " | nc ::1 " .. v6_port .. ")")
+	jsonreq4 = request_socket("127.0.0.1", v4_port, otable)
+	jsonreq6 = request_socket("::1", v6_port, otable)
 	local jsondata4 = {}
 	local jsondata6 = {}
 	local data4 = {}
@@ -383,12 +388,17 @@ function fetch_jsoninfo(otable)
 	local has_v4 = False
 	local has_v6 = False
 
+	if not jsonreq4 and not jsonreq6 then
+                luci.template.render("status-olsr/error_olsr")
+                return nil, 0, 0, true                                                            
+        end                                   
+
 	if jsonreq4 == '' and jsonreq6 == '' then
 		luci.template.render("status-olsr/error_olsr")
 		return nil, 0, 0, true
 	end
 
-	if jsonreq4 ~= "" then
+	if jsonreq4 and jsonreq4 ~= "" then
 		has_v4 = 1
 		jsondata4 = json.decode(jsonreq4)
 		if otable == 'status' then
@@ -402,7 +412,7 @@ function fetch_jsoninfo(otable)
 		end
 
 	end
-	if jsonreq6 ~= "" then
+	if jsonreq6 and jsonreq6 ~= "" then
 		has_v6 = 1
 		jsondata6 = json.decode(jsonreq6)
 		if otable == 'status' then
@@ -420,5 +430,32 @@ function fetch_jsoninfo(otable)
 	end
 
 	return data4, has_v4, has_v6, false
+end
+
+function request_socket(host, port, olsr_object)
+	require "nixio"                                       
+
+	nixio.syslog("debug","olsr-query - host: " .. host .. "; section: " .. olsr_object) 
+	local result = ''
+	local sok = nixio.connect(host, port)
+	if sok == nil then
+		nixio.syslog("debug", "olsr-query - could not connect")
+		return
+	end
+
+        sok:send("/" .. olsr_object)
+        repeat                                                                                   
+                new = sok:recv(1024)                                                         
+                result = result .. new                    
+        until new == ''                                                                             
+        sok:close()
+	nixio.syslog("debug", "olsr-query - end")
+	if result == '' then
+		nixio.syslog("debug", "olsr-query - returning nil")
+		return nil
+	else
+--		nixio.syslog("debug", "olsr-query - result:" .. result)
+		return result
+	end
 end
 
