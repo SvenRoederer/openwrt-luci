@@ -92,13 +92,10 @@ function action_json()
 	http.prepare_content("application/json")
 	if not jsonreq4 or jsonreq4 == "" then
 		jsonreq4 = "{}"
-		nixio.syslog("debug", "json4:fail")
 	end
 	if not jsonreq6 or jsonreq6 == "" then
 		jsonreq6 = "{}"
-		nixio.syslog("debug", "json6:fail")
 	end
-	nixio.syslog("debug", jsonreq6)
 	http.write('{"v4":' .. jsonreq4 .. ', "v6":' .. jsonreq6 .. '}')
 end
 
@@ -377,8 +374,6 @@ function fetch_jsoninfo(otable)
 	local v4_port = uci:get("olsrd", "olsrd_jsoninfo", "port") or 9090
 	local v6_port = uci:get("olsrd6", "olsrd_jsoninfo", "port") or 9090
 
---	jsonreq4 = utl.exec("(echo /" .. otable .. " | nc 127.0.0.1 " .. v4_port .. ") 2>/dev/null")
---	jsonreq6 = utl.exec("(echo /" .. otable .. " | nc ::1 " .. v6_port .. ")")
 	jsonreq4 = request_socket("127.0.0.1", v4_port, otable)
 	jsonreq6 = request_socket("::1", v6_port, otable)
 	local jsondata4 = {}
