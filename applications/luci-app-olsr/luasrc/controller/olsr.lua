@@ -435,7 +435,7 @@ function request_socket(host, port, olsr_object)
 
 	sok:send("/" .. olsr_object)
 	repeat
-		new = sok:recv(1024)
+		new = sok:recv(20480)
 		result = result .. new
 	until new == ''
 	sok:close()
