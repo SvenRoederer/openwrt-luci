@@ -423,7 +423,7 @@ function fetch_jsoninfo(otable)
 end
 
 function request_socket(host, port, olsr_object)
-	require "nixio"                                       
+	require "nixio"
 
 	nixio.syslog("debug","olsr-query - host: " .. host .. "; section: " .. olsr_object) 
 	local result = ''
@@ -433,12 +433,12 @@ function request_socket(host, port, olsr_object)
 		return
 	end
 
-        sok:send("/" .. olsr_object)
-        repeat                                                                                   
-                new = sok:recv(1024)                                                         
-                result = result .. new                    
-        until new == ''                                                                             
-        sok:close()
+	sok:send("/" .. olsr_object)
+	repeat
+		new = sok:recv(1024)
+		result = result .. new
+	until new == ''
+	sok:close()
 	nixio.syslog("debug", "olsr-query - end")
 	if result == '' then
 		nixio.syslog("debug", "olsr-query - returning nil")
