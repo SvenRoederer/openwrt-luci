@@ -424,21 +424,11 @@ end
 
 function request_socket(host, port, olsr_object)
 	require "nixio"
+	local utl = require "luci.util"
 
 	nixio.syslog("debug","olsr-query - host: " .. host .. "; section: " .. olsr_object) 
-	local result = ''
-	local sok = nixio.connect(host, port)
-	if sok == nil then
-		nixio.syslog("debug", "olsr-query - could not connect")
-		return
-	end
+	local result = utl.exec("(echo /" .. olsr_object .. " | nc " .. host .. " " .. port .. ") 2>/dev/null" )
 
-	sok:send("/" .. olsr_object)
-	repeat
-		new = sok:recv(20480)
-		result = result .. new
-	until new == ''
-	sok:close()
 	nixio.syslog("debug", "olsr-query - end")
 	if result == '' then
 		nixio.syslog("debug", "olsr-query - returning nil")
