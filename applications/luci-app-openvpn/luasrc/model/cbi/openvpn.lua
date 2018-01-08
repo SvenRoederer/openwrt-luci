@@ -73,7 +73,8 @@ function s.create(self, name)
 end
 
 
-s:option( Flag, "enabled", translate("Enabled") )
+enable = s:option( Flag, "enable", translate("Enabled") )
+enable.default = "1"
 
 local active = s:option( DummyValue, "_active", translate("Started") )
 function active.cfgvalue(self, section)
