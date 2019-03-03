@@ -12,6 +12,6 @@ LUCI_DEPENDS:=+luci +vpnbypass
 LUCI_PKGARCH:=all
 PKG_RELEASE:=4
 
-include ../../luci.mk
+include ../../feed.mk
 
 # call BuildPackage - OpenWrt buildroot signature

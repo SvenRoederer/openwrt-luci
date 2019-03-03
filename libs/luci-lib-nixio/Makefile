@@ -49,6 +49,6 @@ endif
 
 MAKE_VARS += NIXIO_TLS="$(NIXIO_TLS)"
 
-include ../../luci.mk
+include ../../feed.mk
 
 # call BuildPackage - OpenWrt buildroot signature

@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 LUCI_TITLE:=LuCI Essentials - stripped down and user-friendly
 LUCI_DEPENDS:=+luci-base @BROKEN
 
-include ../../luci.mk
+include ../../feed.mk
 
 # call BuildPackage - OpenWrt buildroot signature
 

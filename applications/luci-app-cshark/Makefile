@@ -12,6 +12,6 @@ LUCI_PKGARCH:=all
 
 PKG_MAINTAINER:=Luka Perkov <luka@openwrt.org>
 
-include ../../luci.mk
+include ../../feed.mk
 
 # call BuildPackage - OpenWrt buildroot signature

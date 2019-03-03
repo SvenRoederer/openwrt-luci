@@ -12,6 +12,6 @@ LUCI_PKGARCH:=all
 
 PKG_MAINTAINER:=Petar Koretic <petar.koretic@sartura.hr>
 
-include ../../luci.mk
+include ../../feed.mk
 
 # call BuildPackage - OpenWrt buildroot signature

@@ -9,6 +9,6 @@ include $(TOPDIR)/rules.mk
 LUCI_TITLE:=SIIT IPv4-over-IPv6 configuration wizard
 LUCI_DEPENDS:=+kmod-siit
 
-include ../../luci.mk
+include ../../feed.mk
 
 # call BuildPackage - OpenWrt buildroot signature

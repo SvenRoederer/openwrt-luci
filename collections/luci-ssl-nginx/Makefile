@@ -20,6 +20,6 @@ LUCI_DEPENDS:= \
 
 PKG_LICENSE:=Apache-2.0
 
-include ../../luci.mk
+include ../../feed.mk
 
 # call BuildPackage - OpenWrt buildroot signature

@@ -33,7 +33,7 @@ help
 		$(PKG_MAINTAINER)
 endef
 
-include ../../luci.mk
+include ../../feed.mk
 
 # call BuildPackage - OpenWrt buildroot signature
 

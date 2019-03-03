@@ -17,6 +17,6 @@ define Package/luci-app-statistics/conffiles
 /etc/config/luci_statistics
 endef
 
-include ../../luci.mk
+include ../../feed.mk
 
 # call BuildPackage - OpenWrt buildroot signature

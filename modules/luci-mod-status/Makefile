@@ -12,7 +12,7 @@ LUCI_DEPENDS:=+luci-base +libiwinfo +libiwinfo-lua
 PKG_BUILD_DEPENDS:=iwinfo
 PKG_LICENSE:=Apache-2.0
 
-include ../../luci.mk
+include ../../feed.mk
 
 # call BuildPackage - OpenWrt buildroot signature
 
