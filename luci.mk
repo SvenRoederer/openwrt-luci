@@ -40,6 +40,10 @@ LUCI_MENU.theme=4. Themes
 LUCI_MENU.proto=5. Protocols
 LUCI_MENU.lib=6. Libraries
 
+HTDOCS = /www
+LUA_LIBRARYDIR = /usr/lib/lua
+LUCI_LIBRARYDIR = $(LUA_LIBRARYDIR)/luci
+
 
 PKG_VERSION?=$(if $(DUMP),x,$(strip $(shell \
 	if svn info >/dev/null 2>/dev/null; then \
@@ -85,10 +89,6 @@ define Build/Prepare
 	done
 	$(call Build/Prepare/Default)
 endef
-
-HTDOCS = /www
-LUA_LIBRARYDIR = /usr/lib/lua
-LUCI_LIBRARYDIR = $(LUA_LIBRARYDIR)/luci
 
 define SrcDiet
 	$(FIND) $(1) -type f -name '*.lua' | while read src; do \
