@@ -18,8 +18,6 @@ PKG_INSTALL:=$(if $(realpath src/Makefile),1)
 PKG_BUILD_DEPENDS += lua/host luci-base/host LUCI_CSSTIDY:csstidy/host $(LUCI_BUILD_DEPENDS)
 PKG_CONFIG_DEPENDS += CONFIG_LUCI_SRCDIET CONFIG_LUCI_JSMIN CONFIG_LUCI_CSSTIDY
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
-
 include luci.mk
 
 define Package/$(PKG_NAME)
