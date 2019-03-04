@@ -120,6 +120,9 @@ define SubstituteVersion
 endef
 
 define Package/$(PKG_NAME)/install
+	$(info Param1: $(1))
+	$(info PKG_BUILD_DIR: $(PKG_BUILD_DIR))
+	$(info LUCI_LIBRARYDIR: $(LUCI_LIBRARYDIR))
 	if [ -d $(PKG_BUILD_DIR)/luasrc ]; then \
 	  $(INSTALL_DIR) $(1)$(LUCI_LIBRARYDIR); \
 	  cp -pR $(PKG_BUILD_DIR)/luasrc/* $(1)$(LUCI_LIBRARYDIR)/; \
