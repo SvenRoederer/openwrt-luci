@@ -13,10 +13,7 @@ LUCI_PKGARCH?=$(if $(realpath src/Makefile),,all)
 
 PKG_NAME?=$(LUCI_NAME)
 
-PKG_RELEASE?=1
-PKG_INSTALL:=$(if $(realpath src/Makefile),1)
-PKG_BUILD_DEPENDS += lua/host luci-base/host LUCI_CSSTIDY:csstidy/host $(LUCI_BUILD_DEPENDS)
-PKG_CONFIG_DEPENDS += CONFIG_LUCI_SRCDIET CONFIG_LUCI_JSMIN CONFIG_LUCI_CSSTIDY
+PKG_BUILD_DEPENDS += $(LUCI_BUILD_DEPENDS)
 
 # get the path of ourself, to find luci.mk in the same directory
 THIS_DIR=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
