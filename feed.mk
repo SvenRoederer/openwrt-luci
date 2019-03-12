@@ -59,6 +59,9 @@ ifeq ($(PKG_NAME),luci-base)
  endef
 endif
 
+define Build/Configure
+endef
+
 ifneq ($(wildcard ${CURDIR}/src/Makefile),)
  MAKE_PATH := src/
  MAKE_VARS += FPIC="$(FPIC)" LUCI_VERSION="$(PKG_VERSION)" LUCI_GITBRANCH="$(PKG_GITBRANCH)"
