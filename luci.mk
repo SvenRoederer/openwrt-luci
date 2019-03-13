@@ -17,7 +17,7 @@ PKG_BUILD_DEPENDS += $(LUCI_BUILD_DEPENDS)
 
 # get the path of ourself, to find luci.mk in the same directory
 THIS_DIR=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-include $(THIS_DIR)/luci.mk
+include $(THIS_DIR)/luci-common.mk
 
 define Package/$(PKG_NAME)
   SECTION:=luci
