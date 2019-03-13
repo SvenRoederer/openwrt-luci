@@ -9,6 +9,6 @@ include $(TOPDIR)/rules.mk
 LUCI_TITLE:=LuCI Support for Wake-on-LAN
 LUCI_DEPENDS:=+etherwake
 
-include ../../feed.mk
+include ../../luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature

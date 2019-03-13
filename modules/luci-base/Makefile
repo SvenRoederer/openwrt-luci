@@ -30,7 +30,7 @@ define Package/luci-base/conffiles
 /etc/config/ucitrack
 endef
 
-include ../../feed.mk
+include ../../luci.mk
 
 define Host/Configure
 endef

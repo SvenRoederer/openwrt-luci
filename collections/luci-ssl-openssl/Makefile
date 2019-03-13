@@ -16,6 +16,6 @@ LUCI_DESCRIPTION:=LuCI with OpenSSL as the SSL backend (libustream-openssl). \
 
 LUCI_DEPENDS:=+luci +libustream-openssl +openssl-util
 
-include ../../feed.mk
+include ../../luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature

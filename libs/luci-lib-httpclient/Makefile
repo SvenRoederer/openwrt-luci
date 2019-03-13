@@ -9,6 +9,6 @@ include $(TOPDIR)/rules.mk
 LUCI_TITLE:=HTTP(S) client library
 LUCI_DEPENDS:=+luci-base +luci-lib-nixio +luci-lib-httpprotoutils
 
-include ../../feed.mk
+include ../../luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature

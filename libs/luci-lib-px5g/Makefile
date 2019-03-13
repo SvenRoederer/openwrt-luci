@@ -12,6 +12,6 @@ LUCI_DEPENDS:=+liblua
 PKG_USE_MIPS16:=0
 PKG_LICENSE:=LGPL-2.1
 
-include ../../feed.mk
+include ../../luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature

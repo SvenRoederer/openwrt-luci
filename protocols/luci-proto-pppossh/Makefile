@@ -12,6 +12,6 @@ LUCI_DEPENDS:=+pppossh
 PKG_LICENSE:=Apache-2.0
 PKG_MAINTAINER:=Yousong Zhou <yszhou4tech@gmail.com>
 
-include ../../feed.mk
+include ../../luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature

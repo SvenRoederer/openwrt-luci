@@ -33,6 +33,6 @@ help
 	Version: $(PKG_VERSION)-$(PKG_RELEASE)
 endef
 
-include ../../feed.mk
+include ../../luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature

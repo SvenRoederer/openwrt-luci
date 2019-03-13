@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 LUCI_TITLE:=LuCI Fail-Safe - Fail-Safe sysupgrade module
 LUCI_DEPENDS:=+luci-base
 
-include ../../feed.mk
+include ../../luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature
 

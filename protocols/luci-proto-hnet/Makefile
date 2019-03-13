@@ -12,6 +12,6 @@ LUCI_DEPENDS:=
 PKG_LICENSE:=Apache-2.0
 PKG_MAINTAINER:=Steven Barth <steven@midlink.org>
 
-include ../../feed.mk
+include ../../luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature

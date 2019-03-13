@@ -15,6 +15,6 @@ LUCI_DEPENDS:=+luci-mod-admin-full
 LUCI_PKGARCH:=all
 PKG_RELEASE:=39
 
-include ../../feed.mk
+include ../../luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature

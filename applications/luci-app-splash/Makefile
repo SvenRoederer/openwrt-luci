@@ -15,6 +15,6 @@ define Package/luci-app-splash/conffiles
 /usr/lib/luci-splash/splashtextinclude.html
 endef
 
-include ../../feed.mk
+include ../../luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature

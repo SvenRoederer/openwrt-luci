@@ -12,6 +12,6 @@ LUCI_BASENAME:=light
 LUCI_TITLE:=Minimum package set using only admin mini and the standard theme
 LUCI_DEPENDS:=+uhttpd +luci-mod-admin-mini +luci-theme-openwrt @BROKEN
 
-include ../../feed.mk
+include ../../luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature

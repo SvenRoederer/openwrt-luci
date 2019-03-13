@@ -7,6 +7,6 @@ LUCI_TITLE:=LuCI support for banIP
 LUCI_DEPENDS:=+banip +luci-lib-jsonc
 LUCI_PKGARCH:=all
 
-include ../../feed.mk
+include ../../luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature

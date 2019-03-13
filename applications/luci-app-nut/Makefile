@@ -11,6 +11,6 @@ LUCI_TITLE:=Network UPS Tools Configuration
 LUCI_PKGARCH:=all
 PKG_RELEASE:=1
 
-include ../../feed.mk
+include ../../luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature

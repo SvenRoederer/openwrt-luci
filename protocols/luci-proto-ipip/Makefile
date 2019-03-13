@@ -11,6 +11,6 @@ LUCI_DEPENDS:=+ipip
 
 PKG_MAINTAINER:=Roger Pueyo Centelles <roger.pueyo@guifi.net>
 
-include ../../feed.mk
+include ../../luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature

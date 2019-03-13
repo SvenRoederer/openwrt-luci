@@ -7,6 +7,6 @@ LUCI_TITLE:=LuCI support for Adblock
 LUCI_DEPENDS:=+adblock +luci-lib-jsonc
 LUCI_PKGARCH:=all
 
-include ../../feed.mk
+include ../../luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature
