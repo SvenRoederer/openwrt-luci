@@ -159,10 +159,6 @@ end
 -- String and data manipulation routines
 --
 
-function pcdata(value)
-	return value and tparser.pcdata(tostring(value))
-end
-
 function urlencode(value)
 	if value ~= nil then
 		local str = tostring(value)
@@ -180,10 +176,6 @@ function urldecode(value, decode_plus)
 			or str
 	end
 	return nil
-end
-
-function striptags(value)
-	return value and tparser.striptags(tostring(value))
 end
 
 function shellquote(value)
@@ -344,8 +336,6 @@ function parse_units(ustr)
 end
 
 -- also register functions above in the central string class for convenience
-string.pcdata      = pcdata
-string.striptags   = striptags
 string.split       = split
 string.trim        = trim
 string.cmatch      = cmatch
