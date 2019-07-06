@@ -5,6 +5,7 @@
 local fs = require "nixio.fs"
 local sys = require "luci.sys"
 local util = require "luci.util"
+local xml = require "luci.xml"
 local http = require "luci.http"
 local nixio = require "nixio", require "nixio.util"
 
@@ -349,7 +350,7 @@ function dispatch(request)
 					(scope and type(scope[key]) ~= "function" and scope[key]) or "")
 
 				if noescape ~= true then
-					val = util.pcdata(val)
+					val = xml.pcdata(val)
 				end
 
 				return string.format(' %s="%s"', tostring(key), val)
@@ -364,8 +365,8 @@ function dispatch(request)
 		   translate   = i18n.translate;
 		   translatef  = i18n.translatef;
 		   export      = function(k, v) if tpl.context.viewns[k] == nil then tpl.context.viewns[k] = v end end;
-		   striptags   = util.striptags;
-		   pcdata      = util.pcdata;
+		   striptags   = xml.striptags;
+		   pcdata      = xml.pcdata;
 		   media       = media;
 		   theme       = fs.basename(media);
 		   resource    = luci.config.main.resourcebase;

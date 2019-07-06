@@ -2,7 +2,7 @@
 -- Licensed to the public under the Apache License 2.0.
 
 local _up = getfenv(3)
-local ut = require("luci.util")
+local xml = require("luci.xml")
 local sys = require("luci.sys")
 local ds = require("luci.dispatcher")
 local nw = require("luci.model.network")
@@ -175,7 +175,7 @@ function cfgvalue_overview_(sdata, lines, names)
 			if n == "key" or n == "password" then
 				v = translate("<hidden>")
 			end
-			local fv = "<var>%s</var>" % ut.pcdata(v)
+			local fv = "<var>%s</var>" % xml.pcdata(v)
 			if sdata[".type"] ~= "ss_server" and n == "server" then
 				fv = '<a class="label" href="%s">%s</a>' % {
 					ds.build_url("admin/services/shadowsocks-libev/servers", v), fv}

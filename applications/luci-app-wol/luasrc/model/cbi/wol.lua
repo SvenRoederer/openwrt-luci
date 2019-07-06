@@ -2,6 +2,7 @@
 -- Licensed to the public under the Apache License 2.0.
 
 local utl = require "luci.util"
+local xml = require "luci.xml"
 local sys = require "luci.sys"
 local ipc = require "luci.ip"
 local fs  = require "nixio.fs"
@@ -79,7 +80,7 @@ function host.write(self, s, val)
 		end
 
 		local msg = "<p><strong>%s</strong><br /><br /><code>%s<br /><br />" %{
-			translate("Starting WoL utility:"), utl.pcdata(cmd)
+			translate("Starting WoL utility:"), xml.pcdata(cmd)
 		}
 
 		local p = io.popen(cmd .. " 2>&1")

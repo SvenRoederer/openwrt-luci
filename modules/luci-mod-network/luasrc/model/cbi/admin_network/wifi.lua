@@ -133,7 +133,7 @@ function m.parse(map)
 	end
 end
 
-m.title = luci.util.pcdata(wnet:get_i18n())
+m.title = luci.xml.pcdata(wnet:get_i18n())
 
 s = m:section(NamedSection, wdev:name(), "wifi-device", translate("Device Configuration"))
 s.addremove = false
