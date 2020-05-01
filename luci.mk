@@ -13,6 +13,8 @@ LUCI_PKGARCH?=$(if $(realpath src/Makefile),,all)
 LUCI_SECTION?=luci
 LUCI_CATEGORY?=LuCI
 
+PKG_BUILD_DEPENDS += $(LUCI_BUILD_DEPENDS)
+
 # Language code titles
 LUCI_LANG.ar=العربية (Arabic)
 LUCI_LANG.bg=български (Bulgarian)
@@ -97,7 +99,7 @@ endef
 PKG_NAME?=$(LUCI_NAME)
 PKG_RELEASE?=1
 PKG_INSTALL:=$(if $(realpath src/Makefile),1)
-PKG_BUILD_DEPENDS += lua/host luci-base/host LUCI_CSSTIDY:csstidy/host LUCI_SRCDIET:luasrcdiet/host $(LUCI_BUILD_DEPENDS)
+PKG_BUILD_DEPENDS += lua/host luci-base/host LUCI_CSSTIDY:csstidy/host LUCI_SRCDIET:luasrcdiet/host
 PKG_CONFIG_DEPENDS += CONFIG_LUCI_SRCDIET CONFIG_LUCI_JSMIN CONFIG_LUCI_CSSTIDY
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
