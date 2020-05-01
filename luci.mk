@@ -194,30 +194,7 @@ define Package/$(PKG_NAME)/postinst
 endef
 endif
 
-# Language selection for luci-base
-ifeq ($(PKG_NAME),luci-base)
- define Package/luci-base/config
-   config LUCI_SRCDIET
-	bool "Minify Lua sources"
-	default n
-
-   config LUCI_JSMIN
-	bool "Minify JavaScript sources"
-	default y
-
-   config LUCI_CSSTIDY
-        bool "Minify CSS files"
-        default y
-
-   menu "Translations"$(foreach lang,$(LUCI_LANGUAGES),
-
-     config LUCI_LANG_$(lang)
-	   tristate "$(shell echo '$(LUCI_LANG.$(lang))' | sed -e 's/^.* (\(.*\))$$/\1/') ($(lang))")
-
-   endmenu
- endef
-endif
-
+# some generic macros that can be used by all packages
 define SrcDiet
 	$(FIND) $(1) -type f -name '*.lua' | while read src; do \
 		if LUA_PATH="$(STAGING_DIR_HOSTPKG)/lib/lua/5.1/?.lua" luasrcdiet --noopt-binequiv -o "$$$$src.o" "$$$$src"; \
@@ -246,6 +223,30 @@ define SubstituteVersion
 			"$$$$src"; \
 	done
 endef
+
+# additional setting luci-base package
+ifeq ($(PKG_NAME),luci-base)
+ define Package/luci-base/config
+   config LUCI_SRCDIET
+	bool "Minify Lua sources"
+	default n
+
+   config LUCI_JSMIN
+	bool "Minify JavaScript sources"
+	default y
+
+   config LUCI_CSSTIDY
+        bool "Minify CSS files"
+        default y
+
+   menu "Translations"$(foreach lang,$(LUCI_LANGUAGES),
+
+     config LUCI_LANG_$(lang)
+	   tristate "$(shell echo '$(LUCI_LANG.$(lang))' | sed -e 's/^.* (\(.*\))$$/\1/') ($(lang))")
+
+   endmenu
+ endef
+endif
 
 
 LUCI_BUILD_PACKAGES := $(PKG_NAME)
