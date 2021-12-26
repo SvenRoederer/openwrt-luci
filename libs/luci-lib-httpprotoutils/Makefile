@@ -7,7 +7,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=HTTP protocol utility functions
-LUCI_DEPENDS:=+luci-lib-base
+LUCI_DEPENDS:=+luci-lib-base +luci-base
 
 include ../../luci.mk
 
