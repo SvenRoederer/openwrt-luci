@@ -8,7 +8,6 @@ local debug = require "debug"
 local ldebug = require "luci.debug"
 local string = require "string"
 local coroutine = require "coroutine"
-local tparser = require "luci.template.parser"
 local json = require "luci.jsonc"
 local lhttp = require "lucihttp"
 
