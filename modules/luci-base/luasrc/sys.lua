@@ -6,7 +6,7 @@ local os     = require "os"
 local table  = require "table"
 local nixio  = require "nixio"
 local fs     = require "nixio.fs"
-local uci    = require "luci.model.uci"
+local uci    = require "uci"
 
 local luci  = {}
 luci.util   = require "luci.util"
