@@ -7,7 +7,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=basic libraries for luci
-LUCI_DEPENDS:=+lua +luci-lib-nixio +luci-lib-ip +luci-lib-jsonc +liblucihttp-lua
+LUCI_DEPENDS:=+lua +libubus-lua +luci-lib-nixio +luci-lib-ip +luci-lib-jsonc +liblucihttp-lua
 
 include ../../luci.mk
 
